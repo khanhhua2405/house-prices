@@ -2,4 +2,4 @@
 numpy==1.21.2
 plotly==5.3.1
 streamlit==1.0.0
-streamlit_lottie
+streamlit-lottie
