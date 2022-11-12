@@ -1,12 +1,14 @@
-
 import pandas as pd
 
 import plotly.express as px
-import requests
-import re
+
 import streamlit as st
+
 from streamlit_lottie import st_lottie
 import streamlit.components.v1 as com
+import requests
+import re
+
 
 st.set_page_config(
   page_title="House data",
@@ -31,17 +33,17 @@ with col2:
 
 st.title('King County House Sales Data Analysis')
 
-st.markdown('Developed By Khanh Hua')
+st.markdown('Developed By alaindelon96 guided by Comunidade DS')
 
 #Read Data
 @st.cache(allow_output_mutation=True)
 def get_data(path):
     data = pd.read_csv(path)
     data['date'] = pd.to_datetime(data['date'])
+
     return data
 #Load Data
 data = get_data('kc_house_data.csv')
-
 #Clean data 
 data=data.dropna()
 data.drop(data.index[data['sqft_basement'] == '?'], inplace = True)
@@ -55,7 +57,7 @@ is_check1 = st.sidebar.checkbox('Map')
 #Transforming data
 data['dormitory_type'] = data['bedrooms'].apply( lambda x: 'studio' if x == 1 else
                                                            'apartment' if x == 2 else
-                                                           'house' if x > 2 else 'villa')
+                                                           'house' if x > 2 else 'NA')
 
 data['condition_status'] = data['condition'].sort_values(ascending=True).apply( lambda x: 'critical' if x == 1 else
                                                               'poor' if x == 2 else
